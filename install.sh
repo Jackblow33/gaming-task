@@ -103,7 +103,7 @@ display_menu() {
     # Execute the selected options in sequence
 
     if [[ $menu_choice == *"Install custom TKG kernel $KERNEL from dropbox"* ]]; then
-        echo "Installing custom kernel $KERNEL from USB..."
+        echo "Installing custom kernel $KERNEL from Dropbox..."
         # source "$SH_PATH/kernel-install.sh"
         source "$SH_PATH/dropbox-kernel-0.3.sh"
     fi
