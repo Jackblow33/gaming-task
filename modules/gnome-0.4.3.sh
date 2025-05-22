@@ -26,7 +26,7 @@ install_desktop_environment() {
     sudo mkdir -p /home/$USR/.local/state/wireplumber || check
     sudo chown -R $USR:$USR /home/$USR/.local/state/wireplumber || check
     # Gnome keyring daemon setup configuration
-    source /home/$USR/debian/gnome-keyring-setup.sh
+    source $SH_PATH/gnome-keyring-setup.sh
 }
 
 
@@ -45,7 +45,7 @@ brave_browser() {
 
 
 gnome_extensions() {
-   source /home/$USR/debian/gnome-extensions.sh || handle_error
+   source $SH_PATH/gnome-extensions.sh || handle_error
 }
 
 
