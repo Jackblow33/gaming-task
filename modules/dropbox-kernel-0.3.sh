@@ -68,7 +68,7 @@ install_kernel() {
         done
         
         # Update the initramfs
-        sudo update-initramfs -u || { echo "Failed at line 69"; handle_error; }
+        #sudo update-initramfs -u || { echo "Failed at line 69"; handle_error; }
         # Update the grub configuration
         sudo update-grub || { echo "Failed at line 71"; handle_error; }
 
