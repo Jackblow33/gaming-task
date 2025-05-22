@@ -2,11 +2,8 @@
 
 # syslog.sh
 
-USR=$(logname)
-
 # Set the log file path
-LOG_DIR="/home/$USR/debian/LOGS"
-mkdir $LOG_DIR
+LOG_DIR="$SH_PATH/LOGS"
 LOG_FILE="$LOG_DIR/system.log"
 
 # System Information
