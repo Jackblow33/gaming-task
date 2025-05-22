@@ -20,8 +20,8 @@ update_upgrade() {
 
 # Minimal Gnome packages installation & settings
 install_desktop_environment() {
-    #input_file="$SH_PATH/lists/tasksel_pkgs.list"   # TODO correct SH_PATH to enable this. Should be SH_PATH="/home/$USR/gaming-task"
-    sudo apt-get install -y $(cat "/home/$USR/gaming-task/lists/tasksel_pkgs.list") || handle_error
+    input_file="$SH_PATH/lists/tasksel_pkgs.list"   # TODO correct SH_PATH to enable this. Should be SH_PATH="/home/$USR/gaming-task"
+    sudo apt-get install -y $(cat "$input_file") || handle_error
 }
 
 # wireplumber dir and permissions settings
@@ -29,12 +29,12 @@ setup_wireplumber() {
     sudo mkdir -p /home/$USR/.local/state/wireplumber || check
     sudo chown -R $USR:$USR /home/$USR/.local/state/wireplumber || check
     # Gnome keyring daemon setup configuration
-    source $SH_PATH/gnome-keyring-setup.sh
+    source $SH_PATH/modules/gnome-keyring-setup.sh
 }
 
 # Gnome keyring daemon setup configuration
 gnome_keyring_setup() {
-    source $SH_PATH/gnome-keyring-setup.sh
+    source $SH_PATH/modules/gnome-keyring-setup.sh
 }
 
 
@@ -45,7 +45,7 @@ kate() {
 }
 
 gnome_extensions() {
-   source $SH_PATH/gnome-extensions.sh || handle_error
+   source $SH_PATH/modules/gnome-extensions.sh || handle_error
 }
 
 
