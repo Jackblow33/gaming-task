@@ -2,11 +2,7 @@
 
 #!/bin/bash
 
-# TODO: 
-# Create modeprobe.d file for modesetting like power management quirk fix
-# Move iommu grub part into kvm script
-
-# 2025-05-16
+# 2025-05-22
 SH_VER="nvidia-11.7.1.sh"
 # WORKING, close to stable
 
