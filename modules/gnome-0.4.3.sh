@@ -20,7 +20,7 @@ update_upgrade() {
 
 # Minimal Gnome packages installation & settings
 install_desktop_environment() {
-    input_file="/home/$USR/debian/pkgs-tools/tasksel_pkgs.list"
+    input_file="/home/$USR/gaming-task/lists/tasksel_pkgs.list"
     sudo apt-get install -y $(cat "$input_file") || handle_error
     # wireplumber dir and permissions
     sudo mkdir -p /home/$USR/.local/state/wireplumber || check
