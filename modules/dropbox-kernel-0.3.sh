@@ -64,9 +64,11 @@ install_kernel() {
             sudo dpkg -i "$deb_file" || { echo "Failed at line 64"; handle_error; }
             #cd "/home/$USR" || { echo "Failed at line 65"; handle_error; }
         done
-
+        
+        # Update the initramfs
+        sudo update-initramfs -u || { echo "Failed at line 69"; handle_error; }
         # Update the grub configuration
-        sudo update-grub || { echo "Failed at line 68"; handle_error; }
+        sudo update-grub || { echo "Failed at line 71"; handle_error; }
 
         # Uncomment to reboot the system and load the new kernel
         #echo "Kernel installation complete. Rebooting the system..."
