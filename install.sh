@@ -5,7 +5,7 @@
 
 # VARIABLES
 USR=$(logname)
-SH_PATH="/home/$USR/gaming-task/modules"
+SH_PATH="/home/$USR/gaming-task/modules" # TODO correct SH_PATH to enable path into gnome-0.4.3.sh. Should be SH_PATH="/home/$USR/gaming-task"
 TIMESTAMP=$(date +%Y%m%d.%R)
 KERNEL="6.14.3-tkg-bore"
 GREEN='\033[0;32m'
