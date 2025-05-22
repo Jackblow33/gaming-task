@@ -21,7 +21,7 @@ update_upgrade() {
 # Minimal Gnome packages installation & settings
 install_desktop_environment() {
     #input_file="$SH_PATH/lists/tasksel_pkgs.list"
-    sudo apt-get install -y $(cat "/home/jack/gaming-task/lists/tasksel_pkgs.list") || handle_error
+    sudo apt-get install -y $(cat "/home/$USR/gaming-task/lists/tasksel_pkgs.list") || handle_error
 }
 
 # wireplumber dir and permissions settings
