@@ -1,0 +1,132 @@
+#!/bin/bash
+
+# extras.sh
+# 2025-05-19
+
+USR=$(logname)
+
+# PACKAGES TO INSTALL
+INSTALL_PKGS=(
+    'fastfetch'
+    'gparted'
+    'timeshift'
+    'vlc'
+)
+
+# Function to handle errors
+handle_error() {
+    echo "Error occurred in the script. Exiting."
+    sleep 2
+    exit 1
+}
+
+# User check. If root, script will exit
+user_check() {
+if [[ $EUID -eq 0 ]]; then
+    echo "This script should be executed as user with root previlege!! Exiting......."
+    exit 1
+fi
+}
+
+update_upgrade() {
+    # Update package list and upgrade installed packages
+    echo "Updating package list and upgrading installed packages..."
+    sudo apt update && sudo apt upgrade -y || { echo "Failed to update-upgrade"; handle_error; }
+}
+
+brave_browser() {
+    #source /home/$USER/debian/brave.sh
+    sudo systemctl daemon-reload
+    sudo systemctl start gnome-keyring-daemon
+    sudo systemctl enable gnome-keyring-daemon.service
+    # sudo systemctl status gnome-keyring-daemon.service
+    sudo chown -R $USR:$USR /home/$USR/.local
+
+    # Install brave
+    sudo apt install -y curl || handle_error
+    sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg || handle_error
+    sudo echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list || handle_error
+    sudo apt update -y || handle_error
+    sudo apt install -y brave-browser || handle_error
+}
+
+
+
+install_pkg() {
+    for PKG in "${INSTALL_PKGS[@]}"; do
+        echo "INSTALLING: ${PKG}"
+        sudo apt install "$PKG" -y || { echo "Failed to install $PKG"; handle_error; }
+    done
+}
+
+
+fastfetch_tweak() {
+    # Check if the .bashrc file exists
+    if [ -f "/home/$USER/.bashrc" ]; then
+        # Check if the 'fastfetch' command is already in the .bashrc file
+        if ! grep -q "fastfetch" "/home/$USER/.bashrc"; then
+            # Add the 'fastfetch' command to the end of the .bashrc file
+            echo "fastfetch" >> /home/$USER/.bashrc || { echo "Fail to write fastfetch line into the .bashrc file."; handle_error; }
+            echo "fastfetch has been added to the .bashrc file."
+        else
+            echo "fastfetch is already in the .bashrc file."
+        fi
+    else
+        echo "The .bashrc file does not exist."
+    fi
+
+}
+
+# Pin apps to favorites ## DO NOT EXECUTE AS ROOT !!!
+pin_apps() {
+    # List
+    # gsettings get org.gnome.shell favorite-apps
+
+    # List results
+    # ['org.gnome.Nautilus.desktop', 'org.gnome.Console.desktop', 'org.kde.kate.desktop', 'brave-browser.desktop']
+
+    # Pin aps
+    gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.Console.desktop', 'org.kde.kate.desktop', 'brave-browser.desktop']"
+}
+
+ # Remove the desktop file
+ rm_stage2_installer() {
+    DESKTOP_FILE="/home/$USR/.config/autostart/stage-2-installer.desktop"
+    sudo rm "$DESKTOP_FILE"
+}    
+
+# Function reboot countdown 10sec.
+countdown_reboot() {
+    local countdown_time=10
+
+    # Function to handle Ctrl+C signal
+    handle_sigint() {
+        echo "Countdown interrupted. Exiting..."
+        exit 0
+    }
+
+    # Trap the Ctrl+C signal and call the handle_sigint function
+    trap handle_sigint SIGINT
+
+    # Countdown loop
+    for ((i=$countdown_time; i>0; i--)); do
+        clear
+        echo -e "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+        echo "                                                                                      Rebooting in $i seconds. Press Ctrl+C to cancel."
+        sleep 1
+    done
+
+    # Reboot the system if Ctrl+C was not pressed
+    echo "Rebooting system..."
+    sudo reboot
+}
+
+# Main script execution
+user_check
+update_upgrade
+brave_browser
+install_pkg
+fastfetch_tweak
+pin_apps
+#rm_stage2_installer
+countdown_reboot
