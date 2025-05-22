@@ -86,7 +86,7 @@ set_permission() {
 # Log system specs in /home/$USR/debian/LOGS
 system_log() {
 echo "Logging system specs"
-source /home/$USR/debian/syslog.sh
+source /home/$USR/gaming-task/LOGS/syslog.sh
 }
 
 # Function to display the menu
