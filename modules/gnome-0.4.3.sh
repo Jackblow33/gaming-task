@@ -18,9 +18,10 @@ update_upgrade() {
     sudo apt update && sudo apt upgrade -y || handle_error
 }
 
+SH_PATH="/home/$USR/gaming-task/modules"
 # Minimal Gnome packages installation & settings
 install_desktop_environment() {
-    input_file="$SH_PATH/lists/tasksel_pkgs.list"
+    input_file="'$SH_PATH'/lists/tasksel_pkgs.list"
     sudo apt-get install -y $(cat "$input_file") || handle_error
 }
 
