@@ -36,14 +36,6 @@ kate() {
    apt purge -y systemsettings
 }
 
-
-brave_browser() {
-   echo "Installing Brave browser..."
-   source /home/$USR/debian/brave.sh || handle_error
-}
-
-
-
 gnome_extensions() {
    source $SH_PATH/gnome-extensions.sh || handle_error
 }
