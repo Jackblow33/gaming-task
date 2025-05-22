@@ -20,12 +20,20 @@ update_upgrade() {
 
 # Minimal Gnome packages installation & settings
 install_desktop_environment() {
-    input_file="/home/$USR/gaming-task/lists/tasksel_pkgs.list"
+    input_file="$SH_PATH/lists/tasksel_pkgs.list"
     sudo apt-get install -y $(cat "$input_file") || handle_error
-    # wireplumber dir and permissions
+}
+
+# wireplumber dir and permissions settings
+setup_wireplumber() {
     sudo mkdir -p /home/$USR/.local/state/wireplumber || check
     sudo chown -R $USR:$USR /home/$USR/.local/state/wireplumber || check
     # Gnome keyring daemon setup configuration
+    source $SH_PATH/gnome-keyring-setup.sh
+}
+
+# Gnome keyring daemon setup configuration
+gnome_keyring_setup() {
     source $SH_PATH/gnome-keyring-setup.sh
 }
 
@@ -58,6 +66,8 @@ root_check
 timer_start
 update_upgrade
 install_desktop_environment
+setup_wireplumber
+gnome_keyring_setup
 gnome_extensions
 #brave_browser     # Moved to stage 2 install      # move this to post installation with: libavcodec-extra vlc
 kate
