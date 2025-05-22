@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # extras.sh
-# 2025-05-19
+# 2025-05-22
 
 USR=$(logname)
 
@@ -89,12 +89,6 @@ pin_apps() {
     gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.Console.desktop', 'org.kde.kate.desktop', 'brave-browser.desktop']"
 }
 
- # Remove the desktop file
- rm_stage2_installer() {
-    DESKTOP_FILE="/home/$USR/.config/autostart/stage-2-installer.desktop"
-    sudo rm "$DESKTOP_FILE"
-}    
-
 # Function reboot countdown 10sec.
 countdown_reboot() {
     local countdown_time=10
@@ -128,5 +122,4 @@ brave_browser
 install_pkg
 fastfetch_tweak
 pin_apps
-#rm_stage2_installer
 countdown_reboot
