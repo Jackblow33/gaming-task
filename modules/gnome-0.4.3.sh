@@ -20,7 +20,7 @@ update_upgrade() {
 
 # Minimal Gnome packages installation & settings
 install_desktop_environment() {
-    #input_file="$SH_PATH/lists/tasksel_pkgs.list"
+    #input_file="$SH_PATH/lists/tasksel_pkgs.list"   # TODO correct SH_PATH to enable this. Should be SH_PATH="/home/$USR/gaming-task"
     sudo apt-get install -y $(cat "/home/$USR/gaming-task/lists/tasksel_pkgs.list") || handle_error
 }
 
