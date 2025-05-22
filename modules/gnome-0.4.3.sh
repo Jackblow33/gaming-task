@@ -60,38 +60,6 @@ network_edit() {
     sed -i "s/managed=false/managed=true/" /etc/NetworkManager/NetworkManager.conf || handle_error
 }
 
-stage_2_installer() {
-    stage_2="/etc/systemd/system/stage-2-installer.service"
-    cat << EOF > "$stage_2" || { echo "Failed at line 65"; handle_error; }
-[Unit]
-Description=Stage 2 custom installer script
-After=reboot.target
-After=graphical.target
-
-[Service]
-ExecStart=/usr/bin/kgx -- /home/jack/debian/extras.sh
-Type=oneshot
-RemainAfterExit=yes
-
-[Install]
-WantedBy=graphical.target
-EOF
-
-    # Enable the service
-    systemctl enable stage-2-installer.service || { echo "Failed at line 81"; handle_error; }
-
-    # Check if the reboot.target and graphical.target have been reached
-    if systemctl is-active reboot.target && systemctl is-active graphical.target; then
-        # If both targets are active, start the service
-        systemctl start stage-2-installer.service || { echo "Failed at line 86"; handle_error; }
-    else
-        # If either target is not active, wait for both to become active before starting the service
-        systemctl wait-for-active reboot.target
-        systemctl wait-for-active graphical.target
-        systemctl start stage-2-installer.service || { echo "Failed at line 91"; handle_error; }
-    fi
-}
-
 
 # Main script execution
 root_check
@@ -103,7 +71,6 @@ gnome_extensions
 kate
 network_edit
 rm_unused_dep
-# stage_2_installer # POS not working!
 timer_stop
 
 
