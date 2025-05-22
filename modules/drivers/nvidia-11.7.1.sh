@@ -15,7 +15,7 @@ SH_VER="nvidia-11.7.1.sh"
 
 USR=$(logname)
 NV_VER="570.133.07"  # Default Nvidia Driver version
-driver_dir="/home/$USR/gaming-task/drivers/NVIDIA-drivers-archives"
+driver_dir="$SH_PATH/drivers/NVIDIA-drivers-archives"
 TIMESTAMP=$(date +%Y%m%d.%R)
 
 
