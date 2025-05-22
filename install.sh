@@ -5,7 +5,7 @@
 
 # VARIABLES
 USR=$(logname)
-SH_PATH="/home/$USR/gaming-task/modules" # TODO correct SH_PATH to enable path into gnome-0.4.3.sh. Should be SH_PATH="/home/$USR/gaming-task"
+SH_PATH="/home/$USR/gaming-task" # TODO correct SH_PATH to enable path into gnome-0.4.3.sh. Should be SH_PATH="/home/$USR/gaming-task"
 TIMESTAMP=$(date +%Y%m%d.%R)
 KERNEL="6.14.3-tkg-bore"
 GREEN='\033[0;32m'
@@ -105,29 +105,29 @@ display_menu() {
     if [[ $menu_choice == *"Install custom TKG kernel $KERNEL from dropbox"* ]]; then
         echo "Installing custom kernel $KERNEL from Dropbox..."
         # source "$SH_PATH/kernel-install.sh"
-        source "$SH_PATH/dropbox-kernel-0.3.sh"
+        source "$SH_PATH/modules/dropbox-kernel-0.3.sh"
     fi
     
     if [[ $menu_choice == *"Install NVIDIA driver"* ]]; then
         echo "Installing NVIDIA driver $NV_VER..."
-        source "$SH_PATH/drivers/nvidia-11.7.1.sh"
+        source "$SH_PATH/modules/drivers/nvidia-11.7.1.sh"
     fi
 
     if [[ $menu_choice == *"Install WiFi BCM4360"* ]]; then
         echo "Installing WiFi BCM4360..."
-        source "$SH_PATH/drivers/wifi-bcm43xx-0.1.sh"
+        source "$SH_PATH/modules/drivers/wifi-bcm43xx-0.1.sh"
     fi
 
     if [[ $menu_choice == *"Install Gnome"* ]]; then
         echo "Installing Gnome..."
         # source "$SH_PATH/pkgs-tools/alpha-debian-gnome.sh" (STABLE)
-        source "$SH_PATH/gnome-0.4.3.sh"
+        source "$SH_PATH/modules/gnome-0.4.3.sh"
     fi
 
 
     if [[ $menu_choice == *"Install Qemu-Kvm virtualization"* ]]; then
         echo "Installing qemu-kvm..."
-        source "$SH_PATH/qemu-kvm-0.6.sh"
+        source "$SH_PATH/modules/qemu-kvm-0.6.sh"
     fi
 
     if [[ $menu_choice == *"Reboot system"* ]]; then
