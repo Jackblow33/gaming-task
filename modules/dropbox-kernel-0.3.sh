@@ -54,6 +54,8 @@ extract_kernel() {
 
 
 install_kernel() {
+    # Install dependencie
+    sudo apt install -y dkms || { echo "Failed at line 58"; handle_error; }
     # Change to the download directory
     cd "/home/$USR/kernels/$FOLDER_NAME" || { echo "Failed at line 58"; handle_error; }
 
