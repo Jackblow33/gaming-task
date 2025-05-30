@@ -1,26 +1,27 @@
-#!/bin/bash
 
 #!/bin/bash
 
-# 2025-05-22
+#!/bin/bash
+
+# nvidia-11.7.1.sh
+# 2025-05-30
+
 SH_VER="nvidia-11.7.1.sh"
-# WORKING, close to stable
 
 # nvidia.sh - Script to install NVIDIA drivers on Debian 13 - Trixie & Sid. Untested on Stable but might work.
 # Linux kernel 6.11 and beyond required
 
 USR=$(logname)
-NV_VER="570.133.07"  # Default Nvidia Driver version
-driver_dir="$SH_PATH/drivers/NVIDIA-drivers-archives"
+NV_VER="575.57.08"  # Default Nvidia Driver version  # Previous: NV_VER="570.133.07"
+driver_dir="/home/$USR/debian/hw-install/NVIDIA-drivers-archives"
 TIMESTAMP=$(date +%Y%m%d.%R)
 
 
-# Display the NVIDIA driver installation warning!
 display_nvidia_warning() {
-    local MESSAGE="To blacklist nouveau driver, the file: /etc/modprobe.d/blacklist-nouveau.conf gonna be created.\n\n\n\
-To fix some power management issues, the file: /etc/modprobe.d/nvidia-power-management.conf gonna be created.\n\n\n\
-nvidia-drm.modeset=1 gonna be added to grub at line: GRUB_CMDLINE_LINUX_DEFAULT in /etc/default.\n\n\n\
-And of course you're gonna taint your kernel with the nvidia proprietary driver!!!\n\n\n\
+    local MESSAGE="**To blacklist nouveau driver, the file: /etc/modprobe.d/blacklist-nouveau.conf might be created.**\n\n\n\
+**To fix some power management issues, the file: /etc/modprobe.d/nvidia-power-management.conf gonna be created.**\n\n\n\
+**nvidia-drm.modeset=1 gonna be set into /etc/modprobe.d/nvidia-graphics-drivers-kms.conf.**\n\n\n\
+**And of course you're gonna taint your kernel with the nvidia proprietary driver!!!**\n\n\n\
 Would you like to continue? Yes or No."
 
     # Display the message in a yes/no dialog
@@ -32,7 +33,6 @@ Would you like to continue? Yes or No."
         exit 1
     fi
 }
-
 
 # Function to handle errors
 handle_error() {
@@ -81,6 +81,7 @@ download_nvidia_driver() {
         echo "The driver file '$driver_file' already exists in '$driver_dir'. Skipping download."
     else
         wget "https://us.download.nvidia.com/XFree86/Linux-x86_64/${NV_VER}/${driver_file}" -P "$driver_dir" || { echo "Error downloading the driver file"; exit 1; }
+       # wget "https://us.download.nvidia.com/XFree86/Linux-x86_64/575.57.08/NVIDIA-Linux-x86_64-575.57.08.run"
     fi
 }
 
