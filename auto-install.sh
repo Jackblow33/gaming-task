@@ -22,7 +22,7 @@ timer_stop() {
     DIFF=$((NOW - BEGIN))
     MINS=$((DIFF / 60))
     SECS=$((DIFF % 60))
-    echo "Time elapsed: $MINS:$(printf %02d $SECS)"
+    echo "                                                                                         Time elapsed: $MINS:$(printf %02d $SECS)"; echo "";
 }
 
 # Handle errors
@@ -50,6 +50,7 @@ countdown_reboot() {
         clear
         echo -e "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
         echo "                                                                                      Rebooting in $i seconds. Press Ctrl+C to cancel."
+        timer_stop
         sleep 1
     done
 
@@ -107,4 +108,3 @@ system_log
 nv_check
 install_gnome
 countdown_reboot
-timer_stop
