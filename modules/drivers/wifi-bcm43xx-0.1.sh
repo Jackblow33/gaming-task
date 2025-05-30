@@ -2,7 +2,6 @@
 
 #2025-05-30
 
-# Execute as root
 # Script to install Broadcom drivers for iMac BCM4360 and other models - check wiki
 # Source: https://wiki.debian.org/wl
 
