@@ -48,6 +48,7 @@ brave_browser() {
     sudo echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list || handle_error
     sudo apt update -y || handle_error
     sudo apt install -y brave-browser || handle_error
+    brave-browser
 }
 
 
