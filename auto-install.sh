@@ -107,5 +107,5 @@ set_permission
 system_log
 nv_check
 install_gnome
-launch_gnome
+#launch_gnome
 countdown_reboot
