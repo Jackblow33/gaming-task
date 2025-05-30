@@ -48,6 +48,10 @@ gnome_extensions() {
    source $SH_PATH/modules/gnome-extensions.sh || handle_error
 }
 
+install_qemu_kvm() {
+    echo "Installing qemu-kvm..."
+    source "$SH_PATH/modules/qemu-kvm-0.6.sh"
+}
 
 rm_unused_dep() {
     # REMOVE UNUSED DEPENDENCIES
@@ -71,6 +75,7 @@ gnome_keyring_setup
 gnome_extensions
 #brave_browser     # Moved to stage 2 install      # move this to post installation with: libavcodec-extra vlc
 kate
+install_qemu_kvm
 network_edit
 rm_unused_dep
 timer_stop
