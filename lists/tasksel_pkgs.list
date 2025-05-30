@@ -11,7 +11,6 @@ eject
 iw
 alsa-utils
 sudo
-#firefox
 cups
 gdm3
 gnome-backgrounds
@@ -40,6 +39,6 @@ gnome-font-viewer
 gnome-logs
 gnome-software
 gnome-system-monitor
-#gnome-text-editor
+gnome-text-editor
 loupe
 nautilus
