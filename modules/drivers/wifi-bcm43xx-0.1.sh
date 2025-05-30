@@ -1,13 +1,28 @@
 #!/bin/bash
 
-#2025-04-24
+#2025-05-30
 
 # Execute as root
 # Script to install Broadcom drivers for iMac BCM4360 and other models - check wiki
 # Source: https://wiki.debian.org/wl
 
-# Start timer
-timer_start
+# Function to handle errors
+handle_error() {
+    echo "Error occurred in the script. Exiting."
+    exit 1
+}
+
+timer_start() {
+    BEGIN=$(date +%s)
+}
+
+timer_stop() {
+    NOW=$(date +%s)
+    DIFF=$((NOW - BEGIN))
+    MINS=$((DIFF / 60))
+    SECS=$((DIFF % 60))
+    echo "Time elapsed: $MINS:$(printf %02d $SECS)"
+}
 
 # Backup the original sources.list file
 #cp /etc/apt/sources.list "/etc/apt/sources_$TIMESTAMP.list"
@@ -15,18 +30,19 @@ timer_start
 # Add the non-free contrib repository to the sources.list file        ####### ADD check if present + automate for sid vs trixie
 #echo "Adding non-free contrib repository to sources.list..."
 #echo "deb http://deb.debian.org/debian/ trixie non-free contrib" >> /etc/apt/sources.list || handle_error
-
+# Start timer
+timer_start
 # Update package lists
 echo -e "${YELLOW}Updating package lists...${NC}"
-apt update
+sudo apt update
 
 # Install
 echo -e "${YELLOW}Installing Broadcom drivers and kernel headers...${NC}"
-apt-get install -y linux-headers-$(unamer -r) broadcom-sta-dkms || handle_error
+sudo apt-get install -y linux-headers-$(unamer -r) broadcom-sta-dkms || handle_error
 
 # Unload conflicting modules
 echo -e "${YELLOW}Unloading conflicting modules...${NC}"
-modprobe -r b44 b43 b43legacy ssb brcmsmac bcma || handle_error
+sudo modprobe -r b44 b43 b43legacy ssb brcmsmac bcma || handle_error
 
 # Load the Broadcom driver
 # echo -e "${GREEN}Loading Broadcom driver...${NC}"
@@ -34,7 +50,7 @@ modprobe -r b44 b43 b43legacy ssb brcmsmac bcma || handle_error
 
 # Check if the user is running GNOME then load Broadcom driver.
   if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ]; then
-    modprobe -r wl && modprobe wl
+    sudo modprobe -r wl && sudo modprobe wl
   else
     echo "Skipping loading Broadcom driver as condition is not met."
   fi
