@@ -81,7 +81,7 @@ source "$SH_PATH/LOGS/syslog.sh"
 
 nv_check() {
     echo "Checking for Nvidia GPU"
-    source "$SH_PATH/modules/drivers/nv-check.sh
+    source "$SH_PATH/modules/drivers/nv-check.sh"
 }
 
 
