@@ -91,7 +91,10 @@ install_gnome() {
     source "$SH_PATH/modules/gnome-0.4.3.sh"
 }
 
-
+launch_gnome() {
+    sudo systemctl enable gdm
+    sudo systemctl start gdm
+}
 
 countdown_reboot() {
    echo "Rebooting soon ..."
@@ -107,4 +110,5 @@ set_permission
 system_log
 nv_check
 install_gnome
-countdown_reboot
+launch_gnome
+#countdown_reboot
