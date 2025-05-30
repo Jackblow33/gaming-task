@@ -137,7 +137,7 @@ user_check
 update_upgrade
 brave_browser
 install_pkg
-install_qemu_kvm
+#install_qemu_kvm
 fastfetch_tweak
 pin_apps
 r_click
