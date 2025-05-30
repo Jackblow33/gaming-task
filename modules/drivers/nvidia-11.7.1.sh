@@ -12,6 +12,7 @@ SH_VER="nvidia-11.7.1.sh"
 # Linux kernel 6.11 and beyond required
 
 USR=$(logname)
+SH_PATH="/home/$USR/gaming-task"
 NV_VER="575.57.08"  # Default Nvidia Driver version  # Previous: NV_VER="570.133.07"
 driver_dir="/home/$USR/gaming-task/modules/drivers/NVIDIA-drivers-archives"
 TIMESTAMP=$(date +%Y%m%d.%R)
@@ -91,6 +92,7 @@ install_nvidia_driver() {
     if [ -f "$driver_path" ]; then
         chmod +x "$driver_path"
         sh "$driver_path" || { echo "Installation aborted or script have failed to load the Nvidia installer."; exit 1; }
+        touch $SH_PATH/modules/drivers/nv-installed
     else
         echo "The driver file '$driver_file' does not exist in '$driver_dir'."
         exit 1
