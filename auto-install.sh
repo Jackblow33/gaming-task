@@ -12,6 +12,13 @@ YELLOW='\033[0;33m'
 RED='\033[0;31m'
 NC='\033[0m'  # No color
 
+# Root_check
+root_check() {
+if [ "$EUID" -ne 0 ]; then
+  echo "This script must be run as root."
+  exit 1
+fi
+}
 
 timer_start() {
     BEGIN=$(date +%s)
@@ -29,42 +36,6 @@ timer_stop() {
 handle_error() {
     echo "Error occurred in the script. Exiting."
     exit 1
-}
-
-
-# Function reboot countdown 10sec.
-countdown_reboot() {
-    local countdown_time=10
-
-    # Function to handle Ctrl+C signal
-    handle_sigint() {
-        echo "Countdown interrupted. Exiting..."
-        exit 0
-    }
-
-    # Trap the Ctrl+C signal and call the handle_sigint function
-    trap handle_sigint SIGINT
-
-    # Countdown loop
-    for ((i=$countdown_time; i>0; i--)); do
-        clear
-        echo -e "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-        echo "                                                                                      Rebooting in $i seconds. Press Ctrl+C to cancel."
-        timer_stop
-        sleep 1
-    done
-
-    # Reboot the system if Ctrl+C was not pressed
-    echo "Rebooting system..."
-    reboot
-}
-
-# Root_check
-root_check() {
-if [ "$EUID" -ne 0 ]; then
-  echo "This script must be run as root."
-  exit 1
-fi
 }
 
 # Grant read, write, and execute permissions recursively to the root, user and others. Use at your own risk!!!
@@ -94,12 +65,39 @@ install_gnome() {
 launch_gnome() {
     if [ -f "$SH_PATH/modules/drivers/nv-installed" ]; then
         echo "NVIDIA driver is installed, skipping GNOME enable and start steps."
+        rm "$SH_PATH/modules/drivers/nv-installed"
     else
         sudo systemctl enable gdm
         sudo systemctl start gdm
     fi
 }
 
+# Function reboot countdown 10sec.
+countdown_reboot() {
+    local countdown_time=10
+
+    # Function to handle Ctrl+C signal
+    handle_sigint() {
+        echo "Countdown interrupted. Exiting..."
+        exit 0
+    }
+
+    # Trap the Ctrl+C signal and call the handle_sigint function
+    trap handle_sigint SIGINT
+
+    # Countdown loop
+    for ((i=$countdown_time; i>0; i--)); do
+        clear
+        echo -e "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+        echo "                                                                                      Rebooting in $i seconds. Press Ctrl+C to cancel."
+        timer_stop
+        sleep 1
+    done
+
+    # Reboot the system if Ctrl+C was not pressed
+    echo "Rebooting system..."
+    reboot
+}
 
 
 # Main script execution
