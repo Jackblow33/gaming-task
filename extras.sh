@@ -89,6 +89,11 @@ pin_apps() {
     gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.Console.desktop', 'org.kde.kate.desktop', 'brave-browser.desktop']"
 }
 
+# Right click create new text file in Gnome Nautilus
+r_click() {
+touch ~/Templates/New\ Text\ File.txt
+}
+
 # Function reboot countdown 10sec.
 countdown_reboot() {
     local countdown_time=10
@@ -122,4 +127,5 @@ brave_browser
 install_pkg
 fastfetch_tweak
 pin_apps
+r_click
 countdown_reboot
