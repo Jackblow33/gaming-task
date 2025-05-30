@@ -60,6 +60,11 @@ install_pkg() {
     done
 }
 
+install_qemu_kvm() {
+    echo "Installing qemu-kvm..."
+    source "$SH_PATH/modules/qemu-kvm-0.6.sh"
+}
+
 
 fastfetch_tweak() {
     # Check if the .bashrc file exists
@@ -126,6 +131,7 @@ user_check
 update_upgrade
 brave_browser
 install_pkg
+install_qemu_kvm
 fastfetch_tweak
 pin_apps
 r_click
