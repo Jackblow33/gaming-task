@@ -45,12 +45,13 @@ kate() {
 }
 
 gnome_extensions() {
+   echo "Installing some gnome extensions..."
    source $SH_PATH/modules/gnome-extensions.sh || handle_error
 }
 
 install_qemu_kvm() {
     echo "Installing qemu-kvm..."
-    source "$SH_PATH/modules/qemu-kvm-0.6.sh"
+    source "$SH_PATH/modules/qemu-kvm-0.6.sh" || handle_error
 }
 
 rm_unused_dep() {
