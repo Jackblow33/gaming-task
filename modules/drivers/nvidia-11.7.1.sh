@@ -13,7 +13,7 @@ SH_VER="nvidia-11.7.1.sh"
 
 USR=$(logname)
 NV_VER="575.57.08"  # Default Nvidia Driver version  # Previous: NV_VER="570.133.07"
-driver_dir="/home/$USR/debian/hw-install/NVIDIA-drivers-archives"
+driver_dir="/home/$USR/gaming-task/modules/drivers/NVIDIA-drivers-archives"
 TIMESTAMP=$(date +%Y%m%d.%R)
 
 
