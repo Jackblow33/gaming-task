@@ -92,8 +92,12 @@ install_gnome() {
 }
 
 launch_gnome() {
-    sudo systemctl enable gdm
-    sudo systemctl start gdm
+    if [ -f "$SH_PATH/modules/drivers/nv-installed" ]; then
+        echo "NVIDIA driver is installed, skipping GNOME enable and start steps."
+    else
+        sudo systemctl enable gdm
+        sudo systemctl start gdm
+    fi
 }
 
 
@@ -106,4 +110,4 @@ system_log
 nv_check
 install_gnome
 launch_gnome
-#countdown_reboot
+countdown_reboot
