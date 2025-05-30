@@ -76,7 +76,7 @@ set_permission() {
 # Log system specs in /home/$USR/debian/LOGS
 system_log() {
 echo "Logging system specs"
-source /home/$USR/gaming-task/LOGS/syslog.sh
+source "$SH_PATH/LOGS/syslog.sh"
 }
 
 nv_check() {
