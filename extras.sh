@@ -3,7 +3,14 @@
 # extras.sh
 # 2025-05-30
 
+# VARIABLES
 USR=$(logname)
+SH_PATH="/home/$USR/gaming-task" # TODO correct SH_PATH to enable path into gnome-0.4.3.sh. Should be SH_PATH="/home/$USR/gaming-task"
+TIMESTAMP=$(date +%Y%m%d.%R)
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+RED='\033[0;31m'
+NC='\033[0m'  # No color
 
 # PACKAGES TO INSTALL
 INSTALL_PKGS=(
