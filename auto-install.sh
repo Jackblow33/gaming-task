@@ -96,11 +96,6 @@ launch_gnome() {
     sudo systemctl start gdm
 }
 
-countdown_reboot() {
-   echo "Rebooting soon ..."
-}
-
-
 
 
 # Main script execution
