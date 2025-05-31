@@ -1,0 +1,4 @@
+# https://www.youtube.com/watch?v=9JZbIqSaFIM
+
+sudo aa-status
+sudo modprobe apparmor
