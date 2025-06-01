@@ -57,20 +57,20 @@ install_kernel() {
     # Install dependencie
     sudo apt install -y dkms || { echo "Failed at line 58"; handle_error; }
     # Change to the download directory
-    cd "/home/$USR/kernels/$FOLDER_NAME" || { echo "Failed at line 58"; handle_error; }
+    cd "/home/$USR/kernels/$FOLDER_NAME" || { echo "Failed at line 60"; handle_error; }
 
     # Check if there are any .deb files in the directory
     if [ "$(ls -1 *.deb 2>/dev/null | wc -l)" -gt 0 ]; then
         # Install the kernel packages using dpkg
         for deb_file in *.deb; do
-            sudo dpkg -i "$deb_file" || { echo "Failed at line 64"; handle_error; }
+            sudo dpkg -i "$deb_file" || { echo "Failed at line 66"; handle_error; }
             #cd "/home/$USR" || { echo "Failed at line 65"; handle_error; }
         done
         
         # Update the initramfs
-        #sudo update-initramfs -u || { echo "Failed at line 69"; handle_error; }
+        #sudo update-initramfs -u || { echo "Failed at line 71"; handle_error; }
         # Update the grub configuration
-        sudo update-grub || { echo "Failed at line 71"; handle_error; }
+        sudo update-grub || { echo "Failed at line 73"; handle_error; }
 
         # Uncomment to reboot the system and load the new kernel
         #echo "Kernel installation complete. Rebooting the system..."
