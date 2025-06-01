@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # auto-install-0.1.sh
-# Date modified: 2025-05-30
+# Date modified: 2025-06-01
 
 # VARIABLES
 USR=$(logname)
@@ -41,34 +41,34 @@ handle_error() {
 # Grant read, write, and execute permissions recursively to the root, user and others. Use at your own risk!!!
 set_permission() {
     echo"Setting permissions"
-    chmod -R 777 $SH_PATH
+    chmod -R 777 $SH_PATH || { echo "Failed at line 44"; handle_error; }
 }
 
 # Log system specs in /home/$USR/debian/LOGS
 system_log() {
 echo "Logging system specs"
-source "$SH_PATH/LOGS/syslog.sh"
+source "$SH_PATH/LOGS/syslog.sh" || { echo "Failed at line 50"; handle_error; }
 }
 
 nv_check() {
     echo "Checking for Nvidia GPU"
-    source "$SH_PATH/modules/drivers/nv-check.sh"
+    source "$SH_PATH/modules/drivers/nv-check.sh" || { echo "Failed at line 55"; handle_error; }
 }
 
 
 
 install_gnome() {
     echo "Installing Gnome desktop environment"
-    source "$SH_PATH/modules/gnome-0.4.3.sh"
+    source "$SH_PATH/modules/gnome-0.4.3.sh" || { echo "Failed at line 62"; handle_error; }
 }
-
+# TODO Works only on AMD gpu, mod check to look for AMD instead. Off by default
 launch_gnome() {
     if [ -f "$SH_PATH/modules/drivers/nv-installed" ]; then
         echo "NVIDIA driver is installed, skipping GNOME enable and start steps."
-        rm "$SH_PATH/modules/drivers/nv-installed"
+        rm "$SH_PATH/modules/drivers/nv-installed" || { echo "Failed at line 68"; handle_error; }
     else
-        sudo systemctl enable gdm
-        sudo systemctl start gdm
+        sudo systemctl enable gdm || { echo "Failed at line 70"; handle_error; }
+        sudo systemctl start gdm || { echo "Failed at line 71"; handle_error; }
     fi
 }
 
