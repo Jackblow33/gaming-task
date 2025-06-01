@@ -8,3 +8,7 @@ cd gaming-task <br>
 chmod +x *.sh <br>
 ./auto-install.sh <br>
 
+##
+After first boot <br>
+Execute /gaming-task/extras.sh <br>
+
