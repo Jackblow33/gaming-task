@@ -107,5 +107,5 @@ set_permission
 system_log
 nv_check
 install_gnome
-#launch_gnome
+#launch_gnome # AMD only with some future script modifications
 countdown_reboot
