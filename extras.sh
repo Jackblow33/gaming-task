@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # extras.sh
-# 2025-05-30
+# 2025-06-01
 
 # VARIABLES
 USR=$(logname)
@@ -42,19 +42,18 @@ update_upgrade() {
 }
 
 brave_browser() {
-    #source /home/$USER/debian/brave.sh
-    sudo systemctl daemon-reload
-    sudo systemctl start gnome-keyring-daemon
-    sudo systemctl enable gnome-keyring-daemon.service
+    sudo systemctl daemon-reload || { echo "extras.sh fail at line 45"; handle_error; }
+    sudo systemctl start gnome-keyring-daemon || { echo "extras.sh fail at line 46"; handle_error; }
+    sudo systemctl enable gnome-keyring-daemon.service || { echo "extras.sh fail at line 47"; handle_error; }
     # sudo systemctl status gnome-keyring-daemon.service
-    sudo chown -R $USR:$USR /home/$USR/.local
+    sudo chown -R $USR:$USR /home/$USR/.local || { echo "extras.sh fail at line 49"; handle_error; }
 
     # Install brave
-    sudo apt install -y curl || handle_error
-    sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg || handle_error
-    sudo echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list || handle_error
-    sudo apt update -y || handle_error
-    sudo apt install -y brave-browser || handle_error
+    sudo apt install -y curl || { echo "extras.sh fail at line 52"; handle_error; }
+    sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg || { echo "extras.sh fail at line 53"; handle_error; }
+    sudo echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list || { echo "extras.sh fail at line 54"; handle_error; }
+    sudo apt update -y || { echo "extras.sh fail at line 55"; handle_error; }
+    sudo apt install -y brave-browser || { echo "extras.sh fail at line 56"; handle_error; }
 }
 
 
@@ -68,7 +67,7 @@ install_pkg() {
 
 install_qemu_kvm() {
     echo "Installing qemu-kvm..."
-    source "$SH_PATH/modules/qemu-kvm-0.6.sh"
+    source "$SH_PATH/modules/qemu-kvm-0.6.sh" || { echo "extras.sh fail at line 70"; handle_error; }
 }
 
 
@@ -89,7 +88,7 @@ fastfetch_tweak() {
 
 }
 
-# Pin apps to favorites ## DO NOT EXECUTE AS ROOT !!!
+# Pin apps to favorites
 pin_apps() {
     # List
     # gsettings get org.gnome.shell favorite-apps
@@ -103,7 +102,7 @@ pin_apps() {
 
 # Right click create new text file in Gnome Nautilus
 r_click() {
-touch ~/Templates/New\ Text\ File.txt
+touch ~/Templates/New\ Text\ File.txt || { echo "extras.sh fail at line 105"; handle_error; }
 }
 
 # Function reboot countdown 10sec.
