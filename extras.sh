@@ -136,7 +136,7 @@ user_check
 update_upgrade
 brave_browser
 install_pkg
-#install_qemu_kvm
+#install_qemu_kvm # For now installed through install.sh TODO: test and move it here.
 fastfetch_tweak
 pin_apps
 r_click
