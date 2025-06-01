@@ -1,5 +1,5 @@
 # Debian 13 sid Gnome gaming task <br>
-auto-install.sh & extras.sh are scripts to install and configure the bare minimum to have a fuctionnal gnome desktop environement to build on top.
+auto-install.sh & extras.sh are scripts to install and configure the bare minimum to have a fuctionnal gnome desktop environement to build on top. This Debian installation can perform as good as any other gaming oriented distro's...
 # 1- Download mini.iso
 
 https://d-i.debian.org/daily-images/amd64/daily/netboot/ <br>
