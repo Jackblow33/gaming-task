@@ -1,5 +1,5 @@
 # Debian 13 sid Gnome gaming task <br>
-This script install the bare minimum to have a fuctionnal gnome desktop environement to build on top.
+auto-install.sh & extras.sh install and configure the bare minimum to have a fuctionnal gnome desktop environement to build on top.
 # 1- Download mini.iso
 
 https://d-i.debian.org/daily-images/amd64/daily/netboot/ <br>
