@@ -3,7 +3,7 @@
 
 https://d-i.debian.org/daily-images/amd64/daily/netboot/ <br>
 <br>
-git clone the repo. <br>
+git clone https://github.com/jackblow33/gaming-task.git <br>
 cd gaming-task <br>
 chmod +x *.sh <br>
 ./auto-install.sh <br>
