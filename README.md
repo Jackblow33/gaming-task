@@ -7,7 +7,7 @@ This is not ready for official release but it works perfectly fine and saves a l
 
 It is optimize for Nvidia graphics cards and the script gonna check if an Nvidia gpu is detected and gonna offer you to install a recent proprietary driver directly downloaded from Nvidia. Also the script gonna list all the modifications related to the Nvidia driver installation. <br>
 
-That doesn't mean that this is not working with AMD gpu. Just not throughly tested. It works obo. <br>
+That doesn't mean that this is not working with AMD gpu. Just not throughly tested. <br>
 
 # 1- Download mini.iso
 
