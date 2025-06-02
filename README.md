@@ -5,7 +5,8 @@ At the moment, you have to optionally compile your own kernel, but a kernel inst
 
 This is not ready for official release but it works perfectly fine and saves a lot of time if you know how to use it. <br>
 
-It is optimize for Nvidia graphics cards and the scrict gonna check if an Nvidia gpu is detected and gonna offer you to install a recent proprietary driver directly download from Nvidia. 
+It is optimize for Nvidia graphics cards and the scrict gonna check if an Nvidia gpu is detected and gonna offer you to install a recent proprietary driver directly download from Nvidia. <br>
+That doesn't mean that this is not working with AMD gpu. Just not throughly tested.
 # 1- Download mini.iso
 
 https://d-i.debian.org/daily-images/amd64/daily/netboot/ <br>
