@@ -5,7 +5,7 @@ At the moment, you have to optionally compile your own kernel, but a kernel inst
 
 This is not ready for official release but it works perfectly fine and saves a lot of time if you know how to use it. Hundreds of hours have been devoted to coding and testing. Only a small percentage of codes have been add to this repo. More to come sooner or later... <br>
 
-It is optimize for Nvidia graphics cards and the script gonna check if an Nvidia gpu is detected and gonna offer you to install a recent proprietary driver directly download from Nvidia. <br>
+It is optimize for Nvidia graphics cards and the script gonna check if an Nvidia gpu is detected and gonna offer you to install a recent proprietary driver directly downloaded from Nvidia. The script gonna list all the modification his gonna do also. <br>
 That doesn't mean that this is not working with AMD gpu. Just not throughly tested.
 # 1- Download mini.iso
 
