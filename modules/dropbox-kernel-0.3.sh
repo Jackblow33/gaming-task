@@ -3,7 +3,7 @@
 # dropbox-kernel-0.3.sh
 # 2025-05-20
 
-# Don't USE IT!!!
+# Don't USE IT!!! Unless you edit it with your own dropbox link or have an Haswell cpu.
 # My precompiled dropbox Haswell kernel 6.14.3-tkg-bore  (all modules compiled)
 # To update the kernel version simply edit following variables: DROPBOX_FOLDER_PATH with dl=1 instead of dl=0 from original dropbox link.
 
