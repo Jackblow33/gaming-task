@@ -1,5 +1,5 @@
 # Debian 13 sid Gnome gaming task <br>
-auto-install.sh & extras.sh are scripts to install and configure the bare minimum to have a fuctionnal gnome desktop environement to build on top. This Debian installation can perform as good as any other gaming oriented distro's I guess... It have been tested against CachyOS and Ubuntu 25.04 and in both case this installer score a tad bit better using a custom TKG kernel 6.14+ .
+auto-install.sh & extras.sh are scripts to install and configure the bare minimum to have a fuctionnal gnome desktop environement to build on top. This Debian installation can perform as good as any other gaming oriented distro's I guess... It have been tested against CachyOS and Ubuntu 25.04 and in both case this installer score a tad bit better using a custom TKG kernel 6.14+ (not included). As of now, you have to compile your own kernel, but a kernel install script is provided as example and could be use to integrate your own kernel into the auto-install.sh script. 
 # 1- Download mini.iso
 
 https://d-i.debian.org/daily-images/amd64/daily/netboot/ <br>
