@@ -2,7 +2,9 @@
 The `auto-install.sh` and `extras.sh` scripts are designed to install and configure the bare minimum to have a functional GNOME desktop environment, which can be built upon. This Debian installation can perform as well as any other gaming-oriented distribution, based on testing against CachyOS and Ubuntu 25.04. In both cases, this installer scored slightly better when using a custom TKG kernel 6.14+ (not included).<br>
 
 At the moment, you have to optionally compile your own kernel, but a kernel install script is provided as an example (`/gaming-task/modules/dropbox-kernel-0.3.sh`) and could be used to integrate your own kernel into the `auto-install.sh` script. You can use the TKG compilation script to easily compile your kernel if you want the best possible performance with this installer.<br>
+
 This is not ready for official release but it works perfectly and saves a lot of time if you know how to use it. <br>
+
 It is optimize for Nvidia graphics cards and the scrict gonna check if an Nvidia gpu is detected and gonna offer you to install a recent proprietary driver.
 # 1- Download mini.iso
 
