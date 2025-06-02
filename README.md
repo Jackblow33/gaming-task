@@ -7,7 +7,10 @@ This is not ready for official release but it works perfectly fine and saves a l
 
 It is optimize for Nvidia graphics cards and the script gonna check if an Nvidia gpu is detected and gonna offer you to install a recent proprietary driver directly downloaded from Nvidia. The script gonna list all the modification his gonna do also. <br>
 
-That doesn't mean that this is not working with AMD gpu. Just not throughly tested. It works obo.
+That doesn't mean that this is not working with AMD gpu. Just not throughly tested. It works obo. <br>
+
+This is not meant to become an other distro but a Debian tasksel task...<br>
+BTW this project have started with kde in mind so almost everything is ready to build kde-gaming-task.
 # 1- Download mini.iso
 
 https://d-i.debian.org/daily-images/amd64/daily/netboot/ <br>
